@@ -1596,10 +1596,17 @@ export const createAntigravityPlugin = (providerId: string) => async (
             process.env.OPENCODE_HEADLESS
           );
 
-          // CLI flow (`opencode auth login`) passes an inputs object.
-          if (inputs) {
+          const argv = process.argv.slice(2);
+          const authIndex = argv.indexOf("auth");
+          const isAuthLoginCommand = authIndex >= 0 && argv[authIndex + 1] === "login";
+          const isInteractiveCli = Boolean(process.stdin.isTTY && process.stdout.isTTY);
+          const shouldUseCliFlow = Boolean(inputs) || isAuthLoginCommand || isInteractiveCli;
+
+          // CLI flow (`opencode auth login`) should run even when inputs are not passed.
+          if (shouldUseCliFlow) {
             const accounts: Array<Extract<AntigravityTokenExchangeResult, { type: "success" }>> = [];
-            const noBrowser = inputs.noBrowser === "true" || inputs["no-browser"] === "true";
+            const inputValues = inputs ?? {};
+            const noBrowser = inputValues.noBrowser === "true" || inputValues["no-browser"] === "true";
             const useManualMode = noBrowser || shouldSkipLocalServer();
 
             // Check for existing accounts and prompt user for login mode

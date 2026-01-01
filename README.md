@@ -409,7 +409,7 @@ OPENCODE_ANTIGRAVITY_KEEP_THINKING=1 # keep_thinking
 
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/anthropics/opencode-antigravity-auth/main/assets/antigravity.schema.json",
+  "$schema": "https://raw.githubusercontent.com/NoeFabris/opencode-antigravity-auth/main/assets/antigravity.schema.json",
   "quiet_mode": false,
   "debug": false,
   "log_dir": "/custom/log/path",
@@ -504,7 +504,7 @@ Models now use `antigravity-` prefix for Antigravity quota. See [Available Model
 
 ```json
 {
-  "$schema": "https://raw.githubusercontent.com/anthropics/opencode-antigravity-auth/main/assets/antigravity.schema.json",
+  "$schema": "https://raw.githubusercontent.com/NoeFabris/opencode-antigravity-auth/main/assets/antigravity.schema.json",
   "quiet_mode": false,
   "debug": false
 }
